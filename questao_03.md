@@ -13,12 +13,10 @@ Atente-se que não podemos ter corridas sem usuários cadastrados, então não p
 
 ---
 
+## Resolução
 
+<img src="images/questao_03.png" width="70%" height="70%" valign="center"/> 
 
-<img src="images/questao_03.png" width="50%" height="50%" valign="center"/> 
-
-
-## Deixe explícito quais tecnologias você utilizaria para implementar o desenho de solução.
 
 ## CDC e Ingestão dos Dados
 O CDC para banco de dados relacionais poderá ler os logs do SGBD, então a partir disso se entrar um novo registro poderá ser capturado e enviado para um serviço de INGESTÃO. Isso poderá ser feito em real time ou near real time.
@@ -36,27 +34,25 @@ O CDC para banco de dados relacionais poderá ler os logs do SGBD, então a part
   - caso negativo, a INTEGAÇÃO insere no CACHE. Em seguida o serviço de INTEGRAÇÃO executa uma task que pega o dado no CACHE e salva no DL.
 
 ### Tecnologias 
-- A primeira opção seria utilizar ferramentas de integração como Apache Nifi ou Apache Airflow onde é possível executar tasks, por exemplo um novo dado entrou em um tópico, usando um operador de sensor é possivel executar a task automaticamente. Isso garantirá que os dados sejam adequadamente combinados e correlacionados, pois não pode haver corridas sem usuários registrados.
+- A primeira opção seria utilizar ferramentas de integração como Apache Nifi ou Apache Airflow onde é possível executar tasks, por exemplo um novo dado entrou em um tópico, usando um operador de sensor é possivel executar a task automaticamente. Porpanto com este tipo de ferramenta será possível garantir que os dados sejam adequadamente combinados e correlacionados, pois não pode haver corridas sem usuários registrados.
 - A segunda forma de fazer a INTEGRAÇÃO seria utilizar um banco de dados relacional para armazenar as informações e garantir a integridade dos dados (por exemplo, usuários e corridas precisam estar vinculados). Isso pode ser feito utilizando bancos de dados como Postgres, MySQL.
 
 ## Cache
-O serviço de CACHE agilizará a validação dos dados pois o serviço de INTEGRAÇÃO somente irá verificar se o usuário tem cadastro através do CACHE. 
-<br/>
-A adição de novos usuários no DL também será feita a partir do CACHE. 
-<br/>
-O CACHE poderá ser feito refresh dos dados de usuários no DL.
+- O serviço de CACHE agilizará a validação dos dados pois o serviço de INTEGRAÇÃO somente irá verificar se o usuário tem cadastro através do CACHE. 
+- A adição de novos usuários no DL também será feita a partir do CACHE. 
+- O CACHE poderá ser feito refresh dos dados de usuários no DL.
 
 ### Tecnologias 
 Para isso poderá ser utilizado Redis ou Memcache.
 
 ## Data Lake (DL)
-O DL poderá utilizar um armazenamento dos dados em blob. Tendo um DL será necessário pensar na parte operacional e governança.
+O DL poderá utilizar um armazenamento dos dados em blob.
 
 ### Tecnologias 
 Para armazenamento dos dados poderá ser utilizado HDFS sendo os dados salvos em avro, parquet ou orc. Além disso, este dados poderam ser armazenados de forma compactada utilizado zip, gzip (mais comum) ou snappy (mais rápido). 
 
 ## Demais Tecnologias
-Para este ambiente será necessário ter tecnolgias para os seguintes pontos:
+Para este ambiente será necessário ter tecnologias para os seguintes pontos:
 - Observabilidade (monitoramento, alertas, logs): DataDog, New Relic, Grafana
 - Versionamento de código: Git, Github, Gitlab
 - Automação de Infra e config: Terraform, Ansible, Chef
@@ -65,3 +61,5 @@ Para este ambiente será necessário ter tecnolgias para os seguintes pontos:
 ## Extra: Updates e Deletes
 Não foi explicitamente cobrado na questão mas pensando em confirmidade com a LGPD será necessário que este ambiente faça Updates e Deletes.
 Para isso, faria com que o CDC enviasse para um tópico do serviço de INGESTÃO a requisição para update/delete. Em seguida a INTEGRAÇÃO iria detectar que há esta requisição e executará a task que faz o update/delete no DL.
+
+---

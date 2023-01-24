@@ -74,4 +74,7 @@ cd questao_02/
 ipython kanastra_data_eng_test_questao_02.ipynb
 ```
 
+### 3 - Eventos
+Fiz um outro [documento (questao_03.md)](questao_03.md) para manter este README voltado a como executar as soluções. 
+
 ---
