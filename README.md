@@ -62,7 +62,7 @@ psql -U root -d postgres -c "\COPY temp (data) FROM '/tmp/datasets/data-nyctaxi-
 ```
 
 **NOTES**
-- Utilizei uma tabela intermediária para fazer o input dos arquivos json para o Postgres e depois migrei para outra tabela já com a estruturada desejada. Para saber mais detalhes [veja o código.](questao_01/kanastra_data_eng_test_part_01.ipynb).
+- Utilizei uma tabela intermediária para fazer o input dos arquivos json para o Postgres e depois migrei para outra tabela já com a estruturada desejada. Para saber mais detalhes [veja o código.](questao_01/kanastra_data_eng_test_questao_01.ipynb)
 
 
 ### Questão 2 - ETL
