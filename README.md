@@ -9,8 +9,9 @@ No segundo modo, [Exec Normal](#exec-normal), será exigido alguns requisitos. A
 
 ## Exec Rapida
 1. Faça o upload dos arquivos `questao_01/kanastra_data_eng_test_part_01.ipynb` e `questao_02/kanastra_data_eng_test_part_02.ipynb` para o Google Drive.
-2. Abra os arquivos com o Google Colab
-3. Execute as células: `Runtime -> Run all`
+2. Abra os arquivos com o Google Colab. Caso o Colab não esta connectado na sua conta Google faça o seguinte:
+- Dê dois cliques no arquivo `ipynb` em seguida, `Abrir com -> Conectar mais aplicativos -> Pesquisar (Colaboratory) -> Instalar`
+3. Execute as células: `Runtime -> Run all` ou `Ambiente de execução -> Executar tudo`
 
 ## Exec Normal
 ### Requisitos
@@ -75,6 +76,6 @@ ipython kanastra_data_eng_test_questao_02.ipynb
 ```
 
 ### 3 - Eventos
-Fiz um outro [documento (questao_03.md)](questao_03.md) para manter este README voltado a como executar as soluções. 
+Fiz um outro [documento (questao_03)](questao_03/questao_03.md) para manter este README voltado a como executar as soluções. 
 
 ---
